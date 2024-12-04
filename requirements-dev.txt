@@ -45,7 +45,17 @@ charset-normalizer==3.4.0
     #   -c requirements.txt
     #   requests
 comm==0.2.2
-    # via ipykernel
+    # via
+    #   ipykernel
+    #   ipywidgets
+contourpy==1.3.1
+    # via
+    #   -c requirements.txt
+    #   matplotlib
+cycler==0.12.1
+    # via
+    #   -c requirements.txt
+    #   matplotlib
 debugpy==1.8.9
     # via ipykernel
 decorator==5.1.1
@@ -56,6 +66,10 @@ executing==2.1.0
     # via stack-data
 fastjsonschema==2.21.0
     # via nbformat
+fonttools==4.55.0
+    # via
+    #   -c requirements.txt
+    #   matplotlib
 fqdn==1.5.1
     # via jsonschema
 h11==0.14.0
@@ -73,8 +87,17 @@ idna==3.10
     #   requests
 ipykernel==6.29.5
     # via jupyterlab
+ipympl==0.9.4
+    # via -r requirements-dev.in
 ipython==8.30.0
-    # via ipykernel
+    # via
+    #   ipykernel
+    #   ipympl
+    #   ipywidgets
+ipython-genutils==0.2.0
+    # via ipympl
+ipywidgets==8.1.5
+    # via ipympl
 isoduration==20.11.0
     # via jsonschema
 jedi==0.19.2
@@ -129,11 +152,21 @@ jupyterlab-pygments==0.3.0
     # via nbconvert
 jupyterlab-server==2.27.3
     # via jupyterlab
+jupyterlab-widgets==3.0.13
+    # via ipywidgets
+kiwisolver==1.4.7
+    # via
+    #   -c requirements.txt
+    #   matplotlib
 markupsafe==3.0.2
     # via
     #   -c requirements.txt
     #   jinja2
     #   nbconvert
+matplotlib==3.9.2
+    # via
+    #   -c requirements.txt
+    #   ipympl
 matplotlib-inline==0.1.7
     # via
     #   ipykernel
@@ -153,6 +186,12 @@ nest-asyncio==1.6.0
     # via ipykernel
 notebook-shim==0.2.4
     # via jupyterlab
+numpy==2.1.3
+    # via
+    #   -c requirements.txt
+    #   contourpy
+    #   ipympl
+    #   matplotlib
 overrides==7.7.0
     # via jupyter-server
 packaging==24.2
@@ -162,6 +201,7 @@ packaging==24.2
     #   jupyter-server
     #   jupyterlab
     #   jupyterlab-server
+    #   matplotlib
     #   nbconvert
 pandocfilters==1.5.1
     # via nbconvert
@@ -169,6 +209,11 @@ parso==0.8.4
     # via jedi
 pexpect==4.9.0
     # via ipython
+pillow==11.0.0
+    # via
+    #   -c requirements.txt
+    #   ipympl
+    #   matplotlib
 platformdirs==4.3.6
     # via jupyter-core
 prometheus-client==0.21.0
@@ -190,11 +235,16 @@ pygments==2.18.0
     #   -c requirements.txt
     #   ipython
     #   nbconvert
+pyparsing==3.2.0
+    # via
+    #   -c requirements.txt
+    #   matplotlib
 python-dateutil==2.9.0.post0
     # via
     #   -c requirements.txt
     #   arrow
     #   jupyter-client
+    #   matplotlib
 python-json-logger==2.0.7
     # via jupyter-events
 pyyaml==6.0.2
@@ -256,7 +306,9 @@ traitlets==5.14.3
     # via
     #   comm
     #   ipykernel
+    #   ipympl
     #   ipython
+    #   ipywidgets
     #   jupyter-client
     #   jupyter-core
     #   jupyter-events
@@ -284,6 +336,8 @@ webencodings==0.5.1
     #   tinycss2
 websocket-client==1.8.0
     # via jupyter-server
+widgetsnbextension==4.0.13
+    # via ipywidgets
 
 # The following packages are considered to be unsafe in a requirements file:
 # setuptools
