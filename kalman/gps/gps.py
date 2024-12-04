@@ -2,6 +2,7 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 from functools import partial
+from analysis.bias import find_acc_bias_model, find_gyr_bias_model
 
 
 def plot_lat_lon_gps_traj(gps_csv_path, truth_csv_path):
@@ -67,7 +68,7 @@ def find_acc_gyr_sampling_properties(acc_csv_path, gyr_csv_path):
 
 
 def process_all_data_into_df_stream(
-    traj_acc_csv_path, traj_gyr_csv_path, traj_gps_csv_path
+    traj_acc_csv_path, traj_gyr_csv_path, traj_gps_csv_path, debias=False
 ):
     traj_acc_df = pd.read_csv(traj_acc_csv_path)
     traj_gyr_df = pd.read_csv(traj_gyr_csv_path)
@@ -79,6 +80,15 @@ def process_all_data_into_df_stream(
     traj_gps_vel_vec = traj_gps_df.loc[:, "Velocity (m/s)"].to_numpy()
     traj_gps_theta_vec = traj_gps_df.loc[:, "Direction (°)"].to_numpy()
     traj_gps_time_vec = traj_gps_df.loc[:, "Time (s)"].to_numpy()
+
+    # Debias the ACC/GYR measurements.
+    if debias:
+        acc_b, acc_m = find_acc_bias_model(traj_acc_csv_path, to_plot=False)
+        gyr_b, gyr_m = find_gyr_bias_model(traj_gyr_csv_path, to_plot=False)
+        acc_bias = acc_m * traj_acc_time_vec + acc_b
+        gyr_bias = gyr_m * traj_gyr_time_vec + gyr_b
+        traj_acc_yaxis_vec -= acc_bias
+        traj_gyr_zaxis_vec -= gyr_bias
 
     # Convert GPS heading to rad.
     traj_gps_theta_vec = np.deg2rad(traj_gps_theta_vec)
