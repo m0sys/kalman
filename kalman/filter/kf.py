@@ -65,10 +65,11 @@ class DiscreteKF:
 
 # ref: https://en.wikipedia.org/wiki/Extended_Kalman_filter
 class DiscreteEKF:
-    def __init__(self, f, h, A_k, H_k, Q_k, R_k):
+    def __init__(self, f, h, A_k, dt, H_k, Q_k, R_k):
         self.f = f  # nonlinear dynamics model
         self.h = h  # nonlinear measurement model
         self.Ak = A_k  # jacobian df/dx(x, y)
+        self.dt = dt  # dt
         self.Hk = H_k  # jacobian dh/dx(x)
         self.Qk = Q_k
         self.Rk = R_k
@@ -90,7 +91,7 @@ class DiscreteEKF:
             )
 
         # Project state ahead.
-        self.xk_minus = self.f(self.xk_minus, uk_minus)
+        self.xk_minus = self.xk_minus + self.f(self.xk_minus, uk_minus) * self.dt
         assert self.xk_minus.shape == (2, 1)
 
         # Compute Jacobian of non-linear state transition model.
