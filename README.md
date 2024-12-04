@@ -1,7 +1,7 @@
 # kalman
 Implementation of Kalman filtering for IMU and GPS sensor.
 
-> Probably the most straight-forward and open implementation of KF/EKF filters used for sensor fusion of GPS/IMU data.
+> Probably the most straight-forward and open implementation of KF/EKF filters used for sensor fusion of GPS/IMU data found on the inter-webs
 
 # Overview
 
